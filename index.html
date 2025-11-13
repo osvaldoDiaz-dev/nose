@@ -74,7 +74,7 @@
   <div class="bg"></div>
   <div class="glitch" id="mainText">DIOS ESTÁ MUERTO</div>
   <div class="glitch2" id="glitchText">sdfhiosdafio+´{ñ+´+´-dsf.g+-´+dfs+´g23452453245####################</div>
-  <audio id="spooky" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b1b1b1b1.mp3" preload="auto"></audio>
+  <audio id="spooky" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b1b1b1b1.mp3" preload="auto" loop></audio>
   <script>
     const mainText = document.getElementById('mainText');
     const glitchText = document.getElementById('glitchText');
@@ -104,7 +104,7 @@
     // Sonido espeluznante, intenta reproducir varias veces por restricciones de navegador
     function playSpooky() {
       const audio = document.getElementById('spooky');
-      audio.volume = 0.7;
+      audio.volume = 1.0;
       audio.play().catch(() => {
         setTimeout(playSpooky, 1000);
       });
