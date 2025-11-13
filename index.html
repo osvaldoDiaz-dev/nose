@@ -24,28 +24,40 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      font-size: 7vw;
-      font-family: 'Impact', 'Arial Black', 'Comic Sans MS', 'Courier', 'System', 'Fixedsys', 'Terminal', 'Consolas', 'MS Gothic', 'Lucida Console', 'Times', 'Verdana', sans-serif;
-      color: #ffeb3b;
-      text-shadow: 2px 2px 0 #222, -2px -2px 0 #ff0000, 2px -2px 0 #00ff00, -2px 2px 0 #00ffff;
+      font-size: 8vw;
+      font-family: 'Impact', 'Arial Black', 'Comic Sans MS', 'Courier', 'System', 'Fixedsys', 'Terminal', 'Consolas', 'MS Gothic', 'Lucida Console', 'Times', 'Verdana', 'Creepster', 'Monoton', 'Bungee', 'Rubik Glitch', 'VT323', 'Share Tech Mono', 'Orbitron', 'Audiowide', 'Press Start 2P', sans-serif;
+      color: #ff0000;
+      text-shadow: 0 0 20px #000, 0 0 10px #ff0000, 0 0 5px #fff, 2px 2px 0 #222, -2px -2px 0 #ff0000, 2px -2px 0 #000, -2px 2px 0 #fff;
       z-index: 2;
       pointer-events: none;
       user-select: none;
-      transition: font-size 0.1s;
+      transition: font-size 0.05s;
+      filter: blur(0.5px) contrast(2);
+      animation: glitchAnim 0.2s infinite linear alternate;
+    }
+    @keyframes glitchAnim {
+      0% { filter: blur(0.5px) contrast(2); }
+      100% { filter: blur(2px) contrast(3); }
     }
     .glitch2 {
       position: absolute;
       left: 50%;
       top: 60%;
       transform: translate(-50%, -50%);
-      font-size: 3vw;
-      font-family: 'Courier New', monospace;
-      color: #fff;
+      font-size: 4vw;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      color: #ff0000;
       z-index: 1;
       pointer-events: none;
       user-select: none;
-      letter-spacing: 0.2vw;
-      opacity: 0.8;
+      letter-spacing: 0.3vw;
+      opacity: 0.95;
+      filter: blur(1px) contrast(2);
+      animation: glitchAnim2 0.15s infinite linear alternate;
+    }
+    @keyframes glitchAnim2 {
+      0% { filter: blur(1px) contrast(2); }
+      100% { filter: blur(3px) contrast(3); }
     }
     .bg {
       position: fixed;
@@ -53,7 +65,8 @@
       height: 100vh;
       top: 0; left: 0;
       z-index: 0;
-      transition: background 0.1s;
+      transition: background 0.05s;
+      filter: blur(2px) contrast(2);
     }
   </style>
 </head>
@@ -66,31 +79,37 @@
     const mainText = document.getElementById('mainText');
     const glitchText = document.getElementById('glitchText');
     const bg = document.querySelector('.bg');
-    const colors = ['#ffeb3b', '#ff0000', '#00ff00', '#00ffff', '#fff', '#222', '#440044', '#8B0000', '#FF00FF', '#FFFF00'];
-    const bgColors = ['#000', '#222', '#440044', '#8B0000', '#FF00FF', '#FFFF00', '#1a1a1a'];
-    const fonts = ['Impact', 'Arial Black', 'Comic Sans MS', 'Courier', 'System', 'Fixedsys', 'Terminal', 'Consolas', 'MS Gothic', 'Lucida Console', 'Times', 'Verdana'];
+    const colors = ['#ff0000', '#000', '#8B0000', '#fff', '#222', '#440044', '#FF0000', '#FF2222', '#990000', '#660000'];
+    const bgColors = ['#000', '#222', '#440044', '#8B0000', '#990000', '#660000', '#1a1a1a', '#111', '#200', '#400'];
+    const fonts = ['Impact', 'Arial Black', 'Comic Sans MS', 'Courier', 'System', 'Fixedsys', 'Terminal', 'Consolas', 'MS Gothic', 'Lucida Console', 'Times', 'Verdana', 'Creepster', 'Monoton', 'Bungee', 'Rubik Glitch', 'VT323', 'Share Tech Mono', 'Orbitron', 'Audiowide', 'Press Start 2P'];
     function randomText() {
-      return 'ml.com/claim/' + Math.random().toString(36).substring(2, 18) + Array.from({length: 20}, () => String.fromCharCode(33 + Math.floor(Math.random()*94))).join('');
+      return Array.from({length: 40}, () => String.fromCharCode(33 + Math.floor(Math.random()*94))).join('');
     }
     function glitchEffect() {
       mainText.style.color = colors[Math.floor(Math.random()*colors.length)];
       mainText.style.fontFamily = fonts[Math.floor(Math.random()*fonts.length)];
-      mainText.style.fontSize = (6 + Math.random()*2) + 'vw';
-      mainText.style.textShadow = `${Math.random()*4}px ${Math.random()*4}px 0 #222, ${-Math.random()*4}px ${-Math.random()*4}px 0 #ff0000, ${Math.random()*4}px ${-Math.random()*4}px 0 #00ff00, ${-Math.random()*4}px ${Math.random()*4}px 0 #00ffff`;
-      mainText.style.transform = `translate(-50%, -50%) scale(${1 + Math.random()*0.2}) rotate(${(Math.random()-0.5)*10}deg)`;
+      mainText.style.fontSize = (7 + Math.random()*3) + 'vw';
+      mainText.style.textShadow = `${Math.random()*8}px ${Math.random()*8}px 0 #000, ${-Math.random()*8}px ${-Math.random()*8}px 0 #ff0000, ${Math.random()*8}px ${-Math.random()*8}px 0 #fff, ${-Math.random()*8}px ${Math.random()*8}px 0 #ff0000`;
+      mainText.style.transform = `translate(-50%, -50%) scale(${1 + Math.random()*0.3}) rotate(${(Math.random()-0.5)*20}deg)`;
       glitchText.textContent = randomText();
       glitchText.style.color = colors[Math.floor(Math.random()*colors.length)];
-      glitchText.style.opacity = 0.7 + Math.random()*0.3;
-      glitchText.style.fontSize = (2.5 + Math.random()*1.5) + 'vw';
-      glitchText.style.transform = `translate(-50%, -50%) scale(${1 + Math.random()*0.3}) rotate(${(Math.random()-0.5)*20}deg)`;
+      glitchText.style.opacity = 0.8 + Math.random()*0.2;
+      glitchText.style.fontSize = (3 + Math.random()*2) + 'vw';
+      glitchText.style.fontFamily = fonts[Math.floor(Math.random()*fonts.length)];
+      glitchText.style.transform = `translate(-50%, -50%) scale(${1 + Math.random()*0.5}) rotate(${(Math.random()-0.5)*40}deg)`;
       bg.style.background = bgColors[Math.floor(Math.random()*bgColors.length)];
-      setTimeout(glitchEffect, 30);
+      setTimeout(glitchEffect, 18);
     }
     glitchEffect();
-    // Sonido espeluznante
-    setTimeout(() => {
-      document.getElementById('spooky').play();
-    }, 1000);
+    // Sonido espeluznante, intenta reproducir varias veces por restricciones de navegador
+    function playSpooky() {
+      const audio = document.getElementById('spooky');
+      audio.volume = 0.7;
+      audio.play().catch(() => {
+        setTimeout(playSpooky, 1000);
+      });
+    }
+    playSpooky();
   </script>
 </body>
 </html>
