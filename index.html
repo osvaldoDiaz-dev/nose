@@ -72,9 +72,12 @@
 </head>
 <body>
   <div class="bg"></div>
-  <div class="glitch" id="mainText">DIOS ESTÁ MUERTO</div>
-  <div class="glitch2" id="glitchText">sdfhiosdafio+´{ñ+´+´-dsf.g+-´+dfs+´g23452453245####################</div>
-  <audio id="spooky" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b1b1b1b1.mp3" preload="auto" loop></audio>
+  <a id="downloadLink" href="#" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:2vw;padding:2vw 4vw;background:#222;color:#fff;border-radius:1vw;text-decoration:none;box-shadow:0 0 20px #ff0000,0 0 10px #000;z-index:10;transition:background 0.2s,box-shadow 0.2s;font-family:'Arial Black','Impact',sans-serif;">
+    Descargar Wilobu App v1.2.123.12
+  </a>
+  <div class="glitch" id="mainText" style="display:none;">DIOS ESTÁ MUERTO</div>
+  <div class="glitch2" id="glitchText" style="display:none;">sdfhiosdafio+´{ñ+´+´-dsf.g+-´+dfs+´g23452453245####################</div>
+  <audio id="spooky" src="gritos_terror_mujer.mp3" preload="auto" loop></audio>
   <script>
     const mainText = document.getElementById('mainText');
     const glitchText = document.getElementById('glitchText');
@@ -100,7 +103,18 @@
       bg.style.background = bgColors[Math.floor(Math.random()*bgColors.length)];
       setTimeout(glitchEffect, 18);
     }
-    glitchEffect();
+    // Solo activa glitch y sonido al hacer clic en el link
+    function activateScare() {
+      document.getElementById('downloadLink').style.display = 'none';
+      document.getElementById('mainText').style.display = '';
+      document.getElementById('glitchText').style.display = '';
+      glitchEffect();
+      playSpooky();
+    }
+    document.getElementById('downloadLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      activateScare();
+    });
     // Sonido espeluznante, intenta reproducir varias veces por restricciones de navegador
     function playSpooky() {
       const audio = document.getElementById('spooky');
@@ -109,7 +123,6 @@
         setTimeout(playSpooky, 1000);
       });
     }
-    playSpooky();
   </script>
 </body>
 </html>
