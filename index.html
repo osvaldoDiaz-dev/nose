@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MercadoLibre Halloween</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .glitch {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 7vw;
+      font-family: 'Impact', 'Arial Black', 'Comic Sans MS', 'Courier', 'System', 'Fixedsys', 'Terminal', 'Consolas', 'MS Gothic', 'Lucida Console', 'Times', 'Verdana', sans-serif;
+      color: #ffeb3b;
+      text-shadow: 2px 2px 0 #222, -2px -2px 0 #ff0000, 2px -2px 0 #00ff00, -2px 2px 0 #00ffff;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+      transition: font-size 0.1s;
+    }
+    .glitch2 {
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      font-size: 3vw;
+      font-family: 'Courier New', monospace;
+      color: #fff;
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.2vw;
+      opacity: 0.8;
+    }
+    .bg {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0; left: 0;
+      z-index: 0;
+      transition: background 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="glitch" id="mainText">¡Has ganado un premio de MercadoLibre!</div>
+  <div class="glitch2" id="glitchText">ml.com/claim/1298374h1203noiu-´.+sa-df+á-dsf¿'-4¿r´12{213}</div>
+  <audio id="spooky" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b1b1b1b1.mp3" preload="auto"></audio>
+  <script>
+    const mainText = document.getElementById('mainText');
+    const glitchText = document.getElementById('glitchText');
+    const bg = document.querySelector('.bg');
+    const colors = ['#ffeb3b', '#ff0000', '#00ff00', '#00ffff', '#fff', '#222', '#440044', '#8B0000', '#FF00FF', '#FFFF00'];
+    const bgColors = ['#000', '#222', '#440044', '#8B0000', '#FF00FF', '#FFFF00', '#1a1a1a'];
+    const fonts = ['Impact', 'Arial Black', 'Comic Sans MS', 'Courier', 'System', 'Fixedsys', 'Terminal', 'Consolas', 'MS Gothic', 'Lucida Console', 'Times', 'Verdana'];
+    function randomText() {
+      return 'ml.com/claim/' + Math.random().toString(36).substring(2, 18) + Array.from({length: 20}, () => String.fromCharCode(33 + Math.floor(Math.random()*94))).join('');
+    }
+    function glitchEffect() {
+      mainText.style.color = colors[Math.floor(Math.random()*colors.length)];
+      mainText.style.fontFamily = fonts[Math.floor(Math.random()*fonts.length)];
+      mainText.style.fontSize = (6 + Math.random()*2) + 'vw';
+      mainText.style.textShadow = `${Math.random()*4}px ${Math.random()*4}px 0 #222, ${-Math.random()*4}px ${-Math.random()*4}px 0 #ff0000, ${Math.random()*4}px ${-Math.random()*4}px 0 #00ff00, ${-Math.random()*4}px ${Math.random()*4}px 0 #00ffff`;
+      mainText.style.transform = `translate(-50%, -50%) scale(${1 + Math.random()*0.2}) rotate(${(Math.random()-0.5)*10}deg)`;
+      glitchText.textContent = randomText();
+      glitchText.style.color = colors[Math.floor(Math.random()*colors.length)];
+      glitchText.style.opacity = 0.7 + Math.random()*0.3;
+      glitchText.style.fontSize = (2.5 + Math.random()*1.5) + 'vw';
+      glitchText.style.transform = `translate(-50%, -50%) scale(${1 + Math.random()*0.3}) rotate(${(Math.random()-0.5)*20}deg)`;
+      bg.style.background = bgColors[Math.floor(Math.random()*bgColors.length)];
+      setTimeout(glitchEffect, 30);
+    }
+    glitchEffect();
+    // Sonido espeluznante
+    setTimeout(() => {
+      document.getElementById('spooky').play();
+    }, 1000);
+  </script>
+</body>
+</html>
