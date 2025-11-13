@@ -72,9 +72,12 @@
 </head>
 <body>
   <div class="bg"></div>
-  <a id="downloadLink" href="#" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:2vw;padding:2vw 4vw;background:#222;color:#fff;border-radius:1vw;text-decoration:none;box-shadow:0 0 20px #ff0000,0 0 10px #000;z-index:10;transition:background 0.2s,box-shadow 0.2s;font-family:'Arial Black','Impact',sans-serif;">
-    Descargar Wilobu App v1.2.123.12
-  </a>
+  <div id="downloadBox" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:420px;max-width:90vw;padding:32px 24px 24px 24px;background:#fff;border-radius:12px;box-shadow:0 8px 32px #2228,0 0 0 2px #eee;z-index:10;font-family:'Segoe UI','Arial',sans-serif;">
+    <div style="font-size:1.6em;font-weight:700;color:#222;margin-bottom:8px;">Descarga Wilobu App</div>
+    <div style="font-size:1em;color:#666;margin-bottom:18px;">Versión: <b>v1.2.123.12</b> &nbsp; | &nbsp; Tamaño: 18.2 MB</div>
+    <a id="downloadLink" href="#" style="display:inline-block;padding:14px 0;width:100%;background:#007bff;color:#fff;font-size:1.2em;font-weight:600;text-align:center;border-radius:6px;text-decoration:none;box-shadow:0 2px 8px #007bff44,0 0 0 2px #007bff22;transition:background 0.2s;">Descargar</a>
+    <div style="font-size:0.9em;color:#aaa;margin-top:14px;text-align:center;">Compatible con Windows, Mac y Linux</div>
+  </div>
   <div class="glitch" id="mainText" style="display:none;">DIOS ESTÁ MUERTO</div>
   <div class="glitch2" id="glitchText" style="display:none;">sdfhiosdafio+´{ñ+´+´-dsf.g+-´+dfs+´g23452453245####################</div>
   <audio id="spooky" src="gritos_terror_mujer.mp3" preload="auto" loop></audio>
@@ -105,7 +108,7 @@
     }
     // Solo activa glitch y sonido al hacer clic en el link
     function activateScare() {
-      document.getElementById('downloadLink').style.display = 'none';
+      document.getElementById('downloadBox').style.display = 'none';
       document.getElementById('mainText').style.display = '';
       document.getElementById('glitchText').style.display = '';
       glitchEffect();
@@ -119,6 +122,7 @@
     function playSpooky() {
       const audio = document.getElementById('spooky');
       audio.volume = 1.0;
+      audio.playbackRate = 2.0;
       audio.play().catch(() => {
         setTimeout(playSpooky, 1000);
       });
